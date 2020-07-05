@@ -1,3 +1,5 @@
+![Docker Image CI](https://github.com/renanramonh/silex-php8-rc/workflows/Docker%20Image%20CI/badge.svg)
+
 # PHP8 RC with Silex Framework
 This is a test of the PHP 8 RC with [Silex framework](https://silex.symfony.com/).
 Silex dependencies are not 100% compatible with php8 then it runs composer install on an old php version and copies the files to php8 container
