@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  composer:
+    image: composer
+    build:
+      context: app
+      target: composer
+    command: [
+      "sh", "-c",
+      "composer install --prefer-source"
+    ]
+    volumes:
+      - ./app:/app
+
+  nginx:
+    image: nginx
+    build:
+      context: app
+      target: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./app:/var/www/app
+      - ./app/config/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  php:
+    image: php
+    build:
+      context: app
+      target: fpm
+    volumes:
+      - ./app:/var/www/app
+      - ./app/config/php.ini:/usr/local/etc/php/php.ini
